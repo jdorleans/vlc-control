@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=vlc-control
+Comment=My project description
+Exec=/usr/bin/qmlscene $@ /usr/share/vlc-control/vlc-control.qml
+Icon=qmlscene
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true
