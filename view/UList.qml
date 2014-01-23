@@ -96,7 +96,7 @@ ListItem.Empty {
       \preliminary
       ListView delegate.
      */
-    property Component delegate: OptionSelectorDelegate { id: selectorDelegate }
+    property Component delegate: UDelegate { id: selectorDelegate }
 
     /*!
       \preliminary
@@ -170,18 +170,19 @@ ListItem.Empty {
                             properties: "height"
                             duration: UbuntuAnimation.BriskDuration
                         }
-                        ScriptAction {
-                            script: {
-                                //Nudge the list up if we're able to scroll.
-                                if (listContainer.isExpanded && !list.atYBeginning && !list.atYBeginning && !list.atYEnd) {
-                                    list.contentY += list.itemHeight / 2
-                                }
-                                //On collapse if we've selected the same index nudge it back down again.
-                                else if (!listContainer.isExpanded && list.previousIndex === list.currentIndex && !list.atYBeginning && !list.atYEnd) {
-                                    list.contentY -= list.itemHeight / 2
-                                }
-                            }
-                        }
+//                        BUG - Losing focus on Selected Item!!!
+//                        ScriptAction {
+//                            script: {
+//                                //Nudge the list up if we're able to scroll.
+//                                if (listContainer.isExpanded && !list.atYBeginning && !list.atYBeginning && !list.atYEnd) {
+//                                    list.contentY += list.itemHeight / 2
+//                                }
+//                                //On collapse if we've selected the same index nudge it back down again.
+//                                else if (!listContainer.isExpanded && list.previousIndex === list.currentIndex && !list.atYBeginning && !list.atYEnd) {
+//                                    list.contentY -= list.itemHeight / 2
+//                                }
+//                            }
+//                        }
                     }
                 }
             ]
@@ -196,6 +197,7 @@ ListItem.Empty {
                 property real itemHeight
                 signal delegateClicked(int index)
 
+//                snapMode: ListView.SnapToItem
                 onDelegateClicked: itemSelector.delegateClicked(index);
                 boundsBehavior: Flickable.StopAtBounds
                 interactive: listContainer.height !== list.contentHeight && listContainer.isExpanded ? true : false

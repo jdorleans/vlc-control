@@ -33,6 +33,7 @@ MainView {
     property string cmdEmpty: "pl_empty"
     property string cmdSeek: "seek&val="
     property string cmdVolume: "volume&val="
+    property string cmdPlayInput: "in_play&input="
 
     Component.onCompleted: {
         createBaseUrl();
@@ -59,6 +60,12 @@ MainView {
             title: i18n.tr("Playlist")
             anchors.fill: parent
             page: Playlist { id: playlist }
+        }
+
+        Tab {
+            title: i18n.tr("Browser")
+            anchors.fill: parent
+            page: Browser { id: browser }
         }
 
     }
@@ -137,4 +144,7 @@ MainView {
         execute(cmdVolume+val);
     }
 
+    function playInput(url) {
+        execute(cmdPlayInput + url);
+    }
 }

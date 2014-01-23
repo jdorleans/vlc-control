@@ -5,8 +5,8 @@ import "../libs"
 
 Page {
     property alias view: view
+    property bool updating: false
     property var currentItem: null
-    property bool updateState: false
 
     // TODO - TEST ONLY
 //    tools: ToolbarItems {
@@ -51,7 +51,7 @@ Page {
         function beforeUpdate()
         {
             if (ready) {
-                updateState = true;
+                updating = true;
                 currentItem = null;
                 view.selectedIndex = -1;
             }
@@ -75,7 +75,7 @@ Page {
                     break;
                 }
             }
-            updateState = false;
+            updating = false;
         }
     }
 
@@ -85,7 +85,7 @@ Page {
         expanded: true
         containerHeight: parent.height
 
-        delegate: OptionSelectorDelegate {
+        delegate: UDelegate {
             id: delegate
             text: formatName(index, name)
             subText: formatTime(duration)
@@ -93,7 +93,7 @@ Page {
 
         onSelectedIndexChanged:
         {
-            if (!updateState) {
+            if (!updating) {
                 updateTimer.stop();
                 currentItem = model.get(selectedIndex);
                 main.play(currentItem.id);

@@ -11,11 +11,20 @@ ListModel {
     property string json: ""
     property string query: ""
     property string source: ""
+    property bool autoUpdateQuery: false
+    property bool autoUpdateSource: true
 
-    onSourceChanged: request()
     onJsonChanged: updateModel()
-//    onQueryChanged: updateModel()
-
+    onQueryChanged: {
+        if (autoUpdateQuery) {
+            updateModel();
+        }
+    }
+    onSourceChanged: {
+        if (autoUpdateSource) {
+            request();
+        }
+    }
 
     function request()
     {
