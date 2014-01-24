@@ -69,6 +69,8 @@ ListItem.Standard {
      */
     property url icon
 
+    property alias leftImage: leftIcon
+
     /*!
       \preliminary
       Constrains the size of the image to nothing greater than that of the delegate. Changes fillMode to Image.PreserveAspectFit.

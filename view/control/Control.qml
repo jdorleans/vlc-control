@@ -45,10 +45,13 @@ Page {
             updateState = true;
             setState(currentState.state);
 
-            if (currentState.information && currentState.information.category['Stream 0'].Type === "Audio") {
-                isAudio = true;
-            } else {
-                isAudio = false;
+            if (currentState.information && currentState.information.category)
+            {
+                if (currentState.information.category['Stream 0'].Type === "Audio") {
+                    isAudio = true;
+                } else {
+                    isAudio = false;
+                }
             }
 
             volume.updateVolume(currentState.volume);

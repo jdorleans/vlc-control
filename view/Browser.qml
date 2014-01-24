@@ -8,7 +8,9 @@ Page {
     property string dirPath: "/home"
     property string filePath: ""
     property string browseUrl: main.baseUrl +"browse.json"
-    property bool updating: false
+
+    property var audioExts: ['mp3', 'flac', 'ogg', 'wav', 'mpa', 'm4a']
+    property var videoExts: ['mkv', 'avi', 'mp4', 'mov', 'vob', 'wmv', 'ogv', 'f4v', 'mpg', 'flv', 'asf', 'm4v', 'swf', 'swt']
 
     // Background
     Rectangle {
@@ -33,12 +35,7 @@ Page {
         }
 
         function beforeUpdate() {
-            updating = true;
             view.selectedIndex = -1;
-        }
-
-        function afterUpdate() {
-            updating = false;
         }
     }
 
@@ -53,21 +50,26 @@ Page {
             text: formatName(name)
             constrainImage: true
             icon: resolveIcon(path, type);
+
+            Component.onCompleted: {
+                leftImage.height -= units.gu(1);
+            }
         }
 
         onSelectedIndexChanged:
         {
-            if (!updating)
+            if (selectedIndex !== -1)
             {
                 updateTimer.stop();
-                var currentItem = model.get(selectedIndex);
+                var item = model.get(selectedIndex);
 
-                if (currentItem.type === "dir") {
-                    dirPath = currentItem.path;
-                } else if (currentItem.type === "file") {
-                    filePath = currentItem.path;
+                if (item.type === "dir") {
+                    dirPath = item.path;
+                } else if (item.type === "file") {
+                    filePath = item.path;
                     main.playInput(filePath);
                 }
+                selectedIndex = -1;
                 updateTimer.restart();
             }
         }
@@ -123,7 +125,7 @@ Page {
         if (type === "dir") {
             return resolveFolder(path);
         } else {
-            return "../img/text-x-generic.svg";
+            return resolveFile(path);
         }
     }
 
@@ -137,7 +139,7 @@ Page {
             folder = "user-home";
         }
         else {
-            path.match("/home.*/(..)");
+            path.match("/.*(..)");
 
             if (RegExp.$1 === "..") {
                 folder = "go-up";
@@ -146,10 +148,7 @@ Page {
                 path.match("/home/.+/(.+)");
                 var name = RegExp.$1;
 
-                if (name === "..") {
-                    folder = "go-up";
-                }
-                else if (name === "Desktop") {
+                if (name === "Desktop") {
                     folder = "user-desktop";
                 }
                 else if (name === "Documents") {
@@ -177,8 +176,45 @@ Page {
                     folder = "ubuntuone";
                     ext = "png"
                 }
+                else if (name === "Dropbox") {
+                    folder = "dropbox";
+                    ext = "png"
+                }
             }
         }
         return "../img/"+ folder +"."+ ext;
+    }
+
+    function resolveFile(path)
+    {
+        var ext = "svg";
+        var file = "text";
+        var suffix = "-x-generic";
+        var extPath = path.slice(-3);
+
+        if (isAudioExt(extPath)) {
+            file = "audio";
+        } else if (isVideoExt(extPath)) {
+            file = "video";
+        }
+        return "../img/"+ file + suffix +"."+ ext;
+    }
+
+    function isAudioExt(ext) {
+        return find(ext, audioExts);
+    }
+
+    function isVideoExt(ext) {
+        return find(ext, videoExts);
+    }
+
+    function find(ext, exts)
+    {
+        for (var e in exts) {
+            if (ext === exts[e]) {
+                return true;
+            }
+        }
+        return false;
     }
 }

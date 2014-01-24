@@ -41,37 +41,28 @@ Page {
         id: model
         query: "$.children[0].children[*]"
         source: main.baseUrl +"playlist.json"
-        property bool ready: false
 
         Component.onCompleted: {
-            ready = true;
+            console.log("Complete!");
             updateTimer.running = true;
         }
 
-        function beforeUpdate()
-        {
-            if (ready) {
-                updating = true;
-                currentItem = null;
-                view.selectedIndex = -1;
-            }
+        function beforeUpdate() {
+            console.log("before...");
+            updating = true;
         }
 
         function afterUpdate()
         {
-            if (!ready) {
-                return;
-            }
-
+            console.log("...after");
             for (var i = 0; i < count; i++)
             {
                 var item = get(i);
 
-                if (item.current)
-                {
+                if (item.current) {
                     currentItem = item;
                     view.selectedIndex = i;
-                    updateTimer.restart();
+                    console.log("current found! "+ i);
                     break;
                 }
             }
@@ -93,10 +84,12 @@ Page {
 
         onSelectedIndexChanged:
         {
-            if (!updating) {
+            if (!updating && selectedIndex !== -1) {
+                console.log("UPDATE!");
                 updateTimer.stop();
                 currentItem = model.get(selectedIndex);
                 main.play(currentItem.id);
+                updateTimer.restart();
             }
         }
     }
