@@ -5,25 +5,10 @@ import "../libs"
 
 Page {
     property alias view: view
+    property int lastIdx: -1
     property int currentId: -1
     property var currentItem: null
     property bool updating: false
-
-    // TODO - TEST ONLY
-//    tools: ToolbarItems {
-//        locked: true
-//        opened: true
-//        ToolbarButton {
-//            text: i18n.tr("Playlist")
-//            iconSource: "../img/repeat2.png"
-//            onTriggered: toogleExpanded()
-//        }
-//        ToolbarButton {
-//            text: i18n.tr("Shuffle")
-//            iconSource: "../img/shuffle.png"
-//            onTriggered: print("shuffle")
-//        }
-//    }
 
     // Background
     Rectangle {
@@ -50,6 +35,7 @@ Page {
         function beforeUpdate() {
             updating = true;
             updateTimer.stop();
+            lastIdx = view.selectedIndex;
         }
 
         // Bug - vlc sets 'current' for all playlist's items from same file uri
@@ -63,17 +49,18 @@ Page {
 
             for (var i = 0; i < count; i++)
             {
-                var item = get(i);
+                currentItem = get(i);
 
-                if (item.current) {
-                    currentItem = item; // must set before id
-                    currentId = item.id;
+                if (currentItem.current) {
+                    currentId = currentItem.id;
                     view.selectedIndex = i;
                     break;
                 }
             }
 
+            // if stopped
             if (view.selectedIndex === -1) {
+                view.selectedIndex = lastIdx;
                 currentItem = null;
                 currentId = -1;
             }

@@ -37,7 +37,6 @@ Page {
             setState(stPlay);
             timer.updateMaximumValue(currentItem.duration);
         } else {
-            volume.updateVolume(0);
             timer.updateMaximumValue();
         }
         timer.updateValue(0);
