@@ -56,11 +56,11 @@ MainView {
             page: Control { id: control }
         }
 
-        Tab {
-            title: i18n.tr("Playlist")
-            anchors.fill: parent
-            page: Playlist { id: playlist }
-        }
+//        Tab {
+//            title: i18n.tr("Playlist")
+//            anchors.fill: parent
+//            page: Playlist { id: playlist }
+//        }
 
         Tab {
             title: i18n.tr("Browser")

@@ -7,11 +7,11 @@ Page {
     property string stPlay: "playing"
     property string stPause: "paused"
     property string stStop: "stopped"
-    property var currentItem: playlist.currentItem
-    property var currentState: main.currentState
-    property bool updateState: false
-    property bool checkState: false
     property bool isAudio: false
+    property bool checkState: false
+    property bool updateState: false
+    property int currentId: playlist.currentId
+    property var currentState: main.currentState
 
 //    // TODO - TEST ONLY
 //    tools: ToolbarItems {
@@ -29,12 +29,17 @@ Page {
 //        }
 //    }
 
-    onCurrentItemChanged:
+    onCurrentIdChanged:
     {
+        var currentItem = playlist.currentItem;
+
         if (currentItem) {
             setState(stPlay);
+            timer.updateMaximumValue(currentItem.duration);
+        } else {
+            volume.updateVolume(0);
+            timer.updateMaximumValue();
         }
-        timer.updateMaximumValue();
         timer.updateValue(0);
     }
 
@@ -47,13 +52,14 @@ Page {
 
             if (currentState.information && currentState.information.category)
             {
-                if (currentState.information.category['Stream 0'].Type === "Audio") {
+                var type = currentState.information.category['Stream 0'].Type;
+
+                if (type && type === "Audio") {
                     isAudio = true;
                 } else {
                     isAudio = false;
                 }
             }
-
             volume.updateVolume(currentState.volume);
             timer.updateValue(currentState.time);
             info.meta = getMetadata();

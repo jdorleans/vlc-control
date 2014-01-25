@@ -5,8 +5,9 @@ import "../libs"
 
 Page {
     property alias view: view
-    property bool updating: false
+    property int currentId: -1
     property var currentItem: null
+    property bool updating: false
 
     // TODO - TEST ONLY
 //    tools: ToolbarItems {
@@ -43,29 +44,40 @@ Page {
         source: main.baseUrl +"playlist.json"
 
         Component.onCompleted: {
-            console.log("Complete!");
             updateTimer.running = true;
         }
 
         function beforeUpdate() {
-            console.log("before...");
             updating = true;
+            updateTimer.stop();
         }
 
+        // Bug - vlc sets 'current' for all playlist's items from same file uri
+        // We cannot track the correct selected item from vlc in this case
+        // So we'll always consider the first 'current' item
         function afterUpdate()
         {
-            console.log("...after");
+            // Workaround - avoid problems caused by clear() from JSONListModel.updateModel()
+            // When clear is called, view.selectedIndex changes automatically to 0
+            view.selectedIndex = -1;
+
             for (var i = 0; i < count; i++)
             {
                 var item = get(i);
 
                 if (item.current) {
-                    currentItem = item;
+                    currentItem = item; // must set before id
+                    currentId = item.id;
                     view.selectedIndex = i;
-                    console.log("current found! "+ i);
                     break;
                 }
             }
+
+            if (view.selectedIndex === -1) {
+                currentItem = null;
+                currentId = -1;
+            }
+            updateTimer.restart();
             updating = false;
         }
     }
@@ -85,15 +97,14 @@ Page {
         onSelectedIndexChanged:
         {
             if (!updating && selectedIndex !== -1) {
-                console.log("UPDATE!");
                 updateTimer.stop();
                 currentItem = model.get(selectedIndex);
-                main.play(currentItem.id);
+                currentId = currentItem.id;
+                main.play(currentId);
                 updateTimer.restart();
             }
         }
     }
-
 
     function toogleExpanded() {
         view.expanded = !view.expanded;

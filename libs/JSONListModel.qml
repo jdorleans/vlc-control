@@ -44,12 +44,16 @@ ListModel {
 
     function afterUpdate() { }
 
-
     function updateModel()
     {
         beforeUpdate();
         clear();
+        updateJSON();
+        afterUpdate();
+    }
 
+    function updateJSON()
+    {
         if (json !== "")
         {
             var jsonObject = parseJSON(json, query);
@@ -58,7 +62,6 @@ ListModel {
                 append(jsonObject[index]);
             }
         }
-        afterUpdate();
     }
 
     function parseJSON(json, query)

@@ -25,10 +25,10 @@ JSlider {
         return m +":"+ s;
     }
 
-    function updateMaximumValue()
+    function updateMaximumValue(duration)
     {
-        if (currentItem) {
-            maximumValue = currentItem.duration
+        if (duration) {
+            maximumValue = duration
         } else {
             maximumValue = 100;
         }

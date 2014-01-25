@@ -185,15 +185,15 @@ ListItem.Standard {
                         imageExpansion.start();
                     }
                 } else {
-//                    if (!option.selected) {
-//                        optionCollapse.start();
-//                    } else {
-//                        if (listView.previousIndex !== listView.currentIndex)
-//                            selectedImageCollapse.start();
-//                        else {
-//                            deselectedImageCollapse.start();
-//                        }
-//                    }
+                    if (!option.selected) {
+                        optionCollapse.start();
+                    } else {
+                        if (listView.previousIndex !== listView.currentIndex)
+                            selectedImageCollapse.start();
+                        else {
+                            deselectedImageCollapse.start();
+                        }
+                    }
                 }
             }
         }, SequentialAnimation {
