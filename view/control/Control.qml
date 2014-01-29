@@ -94,8 +94,12 @@ Page {
 
         Playlist {
             id: playlist
-            view.expanded: isStopped()
+            view.expanded: expanded
             anchors.fill: parent
+            property bool expanded: isStopped()
+
+            // workaround to expand/collapse playlist
+            onExpandedChanged: view.container.isExpanded = expanded;
         }
 
         CoverArtControl {
@@ -184,8 +188,7 @@ Page {
         main.pause();
     }
 
-    function stop()
-    {
+    function stop() {
         checkState = true;
         timer.updateValue(0);
         setState(stStop);

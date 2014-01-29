@@ -39,42 +39,56 @@ Page {
         }
     }
 
-    UList {
-        id: view
-        model: model
-        expanded: true
-        containerHeight: parent.height
+    Column {
+        spacing: units.gu(1)
+        anchors.fill: parent
+        anchors.topMargin: units.gu(1)
 
-        delegate: UDelegate {
-            id: delegate
-            text: formatName(name)
-            constrainImage: true
-            icon: resolveIcon(path, type);
-
-            Component.onCompleted: {
-                leftImage.height -= units.gu(1);
-            }
+        Label {
+            id: lbPath
+            text: dirPath
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.leftMargin: units.gu(1)
+            anchors.rightMargin: units.gu(1)
         }
 
-        onSelectedIndexChanged:
-        {
-            if (selectedIndex !== -1)
-            {
-                updateTimer.stop();
-                var item = model.get(selectedIndex);
+        UList {
+            id: view
+            model: model
+            expanded: true
+            containerHeight: parent.height
 
-                if (item.type === "dir") {
-                    dirPath = item.path;
-                } else if (item.type === "file") {
-                    filePath = item.path;
-                    main.playInput(filePath);
+            delegate: UDelegate {
+                id: delegate
+                text: formatName(name)
+                constrainImage: true
+                icon: resolveIcon(path, type);
+
+                Component.onCompleted: {
+                    leftImage.height -= units.gu(1);
                 }
-                selectedIndex = -1;
-                updateTimer.restart();
+            }
+
+            onSelectedIndexChanged:
+            {
+                if (selectedIndex !== -1)
+                {
+                    updateTimer.stop();
+                    var item = model.get(selectedIndex);
+
+                    if (item.type === "dir") {
+                        dirPath = item.path;
+                    } else if (item.type === "file") {
+                        filePath = item.path;
+                        main.playInput(filePath);
+                    }
+                    selectedIndex = -1;
+                    updateTimer.restart();
+                }
             }
         }
     }
-
 
     function toogleExpanded() {
         view.expanded = !view.expanded;

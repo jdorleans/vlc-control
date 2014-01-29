@@ -110,6 +110,9 @@ ListItem.Empty {
      */
     property alias selectedIndex: list.currentIndex
 
+    // VLC Control - Workaround
+    property alias container: listContainer
+
     /*!
       Called when delegate is clicked.
      */
@@ -170,6 +173,7 @@ ListItem.Empty {
                             properties: "height"
                             duration: UbuntuAnimation.BriskDuration
                         }
+//                        VLC Control - Workaround
 //                        BUG - Losing focus on Selected Item!!!
 //                        ScriptAction {
 //                            script: {

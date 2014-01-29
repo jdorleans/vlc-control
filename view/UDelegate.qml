@@ -185,6 +185,9 @@ ListItem.Standard {
                         imageExpansion.start();
                     }
                 } else {
+//                    VLC Control - Workaround
+//                    BUG - Losing item selected when scroll the listview
+//                    Deactivating opacity effect in order to see the list items
 //                    if (!option.selected) {
 //                        optionCollapse.start();
 //                    } else {

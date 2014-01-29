@@ -18,7 +18,7 @@ MainView {
 
     property string protocol: "http"
     property string host: "localhost"
-//    property string host: "192.168.1.104"
+//    property string host: "192.168.000.001" // default ip
     property int port: 8080
     property string baseUrl: ""
     property string statusUrl: ""
@@ -40,12 +40,17 @@ MainView {
         updateTimer.running = true;
     }
 
+    onHostChanged: createBaseUrl();
+    onPortChanged: createBaseUrl();
+
     Timer {
         id: updateTimer
         interval: 1000
         repeat: true
         onTriggered: updateStatus()
     }
+
+//    NetworkFinder { id: networkFinder }
 
 
     Tabs {
@@ -66,6 +71,12 @@ MainView {
             title: i18n.tr("Browser")
             anchors.fill: parent
             page: Browser { id: browser }
+        }
+
+        Tab {
+            title: i18n.tr("Connection")
+            anchors.fill: parent
+            page: Connection { id: connection }
         }
 
     }
