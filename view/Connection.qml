@@ -34,7 +34,7 @@ Page {
                 height: units.gu(5)
                 font.pixelSize: units.gu(2)
                 color: focus ? "#EE6600" : "white"
-                placeholderText: i18n.tr("IP Address (default: 192.168.000.001)")
+                placeholderText: i18n.tr("default: 192.168.0.1")
                 width: parent.width - lbHost.width - parent.spacing
 //                inputMask: "009.009.009.009"
                 onTextChanged: text = text.trim()
@@ -60,7 +60,7 @@ Page {
                 height: units.gu(5)
                 font.pixelSize: units.gu(2)
                 color: focus ? "#EE6600" : "white"
-                placeholderText: i18n.tr("Port (default: 8080)")
+                placeholderText: i18n.tr("default: 8080")
                 width: parent.width - lbPort.width - parent.spacing
 //                inputMask: "00000"
                 validator: IntValidator { bottom: 0; top: 99999; }

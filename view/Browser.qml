@@ -37,6 +37,21 @@ Page {
         function beforeUpdate() {
             view.selectedIndex = -1;
         }
+
+        // VLC BUG - app crashes when accessing some folders such as: /etc or /sbin
+        function afterUpdate()
+        {
+            var re = /^\/.*\/.*\/\.\.$/
+
+            if (!re.test(dirPath))
+            {
+                re = /^\/.*\/\.\.$/
+
+                if (re.test(dirPath)) {
+                    remove(0);
+                }
+            }
+        }
     }
 
     Column {
@@ -46,18 +61,37 @@ Page {
 
         Label {
             id: lbPath
-            text: dirPath
+            text: fixPath()
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.leftMargin: units.gu(1)
             anchors.rightMargin: units.gu(1)
+
+            function fixPath()
+            {
+                var path = dirPath;
+                var re = /^\/.*\/.*\/\.\.$/
+
+                if (re.test(dirPath)) {
+                    dirPath.match("(\/.*)\/.*\/\.\.");
+                    path = RegExp.$1;
+                }
+                else {
+                    re = /^\/.*\/\.\.$/
+
+                    if (re.test(dirPath)) {
+                        path = "/"
+                    }
+                }
+                return path;
+            }
         }
 
         UList {
             id: view
             model: model
             expanded: true
-            containerHeight: parent.height
+            containerHeight: parent.height - lbPath.height - units.gu(1)
 
             delegate: UDelegate {
                 id: delegate
@@ -153,7 +187,7 @@ Page {
             folder = "user-home";
         }
         else {
-            path.match("/.*(..)");
+            path.match("/.*(\.\.)");
 
             if (RegExp.$1 === "..") {
                 folder = "go-up";
