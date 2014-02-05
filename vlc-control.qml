@@ -17,8 +17,8 @@ MainView {
 //    automaticOrientation: true
 
     property string protocol: "http"
-    property string host: "localhost"
-//    property string host: "192.168.000.001" // default ip
+//    property string host: "localhost"
+    property string host: "192.168.0.1" // default ip
     property int port: 8080
     property string baseUrl: ""
     property string statusUrl: ""
