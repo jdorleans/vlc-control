@@ -11,6 +11,7 @@ Image {
     property int minSwipeX: parent.width*swipeFactor
     property int minSwipeY: parent.height*swipeFactor
     property var meta: null
+    property var current_art: null
 
     signal click
 
@@ -106,10 +107,9 @@ Image {
 
     function updateCoverArt(meta)
     {
-        source = "";
-
-        if (meta && meta.artwork_url) {
-            source = meta.artwork_url;
+        if (meta && meta.artwork_url && current_art !== meta.artwork_url) {
+            current_art = meta.artwork_url;
+            source = main.protocol + "://" + main.host + ":" + main.port + "/art?" + +Date.now();
         }
     }
 
