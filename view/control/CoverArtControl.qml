@@ -10,8 +10,7 @@ Image {
     property int minMoveY: parent.height*moveFactor
     property int minSwipeX: parent.width*swipeFactor
     property int minSwipeY: parent.height*swipeFactor
-    property var meta: null
-    property var current_art: null
+    property var currentArt: null
 
     signal click
 
@@ -24,8 +23,6 @@ Image {
     signal swipeDown
     signal swipeLeft
     signal swipeRight
-
-    onMetaChanged: updateCoverArt(meta)
 
     Timer {
         id: updater
@@ -107,9 +104,14 @@ Image {
 
     function updateCoverArt(meta)
     {
-        if (meta && meta.artwork_url && current_art !== meta.artwork_url) {
-            current_art = meta.artwork_url;
-            source = main.protocol + "://" + main.host + ":" + main.port + "/art?" + +Date.now();
+        if (meta && meta.artwork_url) {
+            if (currentArt !== meta.artwork_url) {
+                currentArt = meta.artwork_url;
+                source = main.baseUrl +"art?"+ new Date();
+            }
+        } else {
+            currentArt = null;
+            source = ""; // TODO Add image for 'CoverArt not Found'
         }
     }
 

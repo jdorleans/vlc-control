@@ -5,14 +5,6 @@ Rectangle {
     color: "#DD000000"
     height: column.height + units.gu(2)
 
-    property var meta
-
-    onMetaChanged: {        
-        updateTitle(meta);
-        updateAlbum(meta);
-        updateArtist(meta);
-    }
-
     Column {
         id: column
         anchors.left: parent.left
@@ -36,10 +28,19 @@ Rectangle {
         }
     }
 
+
+    function updateInfos(meta) {
+        updateTitle(meta);
+        updateAlbum(meta);
+        updateArtist(meta);
+    }
+
     function updateTitle(meta)
     {
         if (meta && meta.title) {
-            title.text = meta.title;
+            if (meta.title !== title.text) {
+                title.text = meta.title;
+            }
         } else {
             title.text = "";
         }
@@ -48,7 +49,9 @@ Rectangle {
     function updateAlbum(meta)
     {
         if (meta && meta.album) {
-            album.text = meta.album;
+            if (meta.album !== album.text) {
+                album.text = meta.album;
+            }
         } else {
             album.text = "";
         }
@@ -57,7 +60,9 @@ Rectangle {
     function updateArtist(meta)
     {
         if (meta && meta.artist) {
-            artist.text = meta.artist;
+            if (meta.artist !== artist.text) {
+                artist.text = meta.artist;
+            }
         } else {
             artist.text = "";
         }

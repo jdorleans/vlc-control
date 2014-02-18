@@ -54,8 +54,8 @@ Page {
             updateMetadata();
             updateAudioState();
 
-            info.meta = meta;
-            art.meta = meta;
+            info.updateInfos(meta);
+            art.updateCoverArt(meta);
             volume.updateVolume(currentState.volume);
             timer.updateValue(currentState.time);
             updateState = false;
@@ -211,8 +211,6 @@ Page {
 
     function updateCategory()
     {
-        category = null;
-
         if (currentState.information && currentState.information.category) {
             category = currentState.information.category;
         }
@@ -220,8 +218,6 @@ Page {
 
     function updateMetadata()
     {
-        meta = null;
-
         if (category) {
             meta = category.meta;
         }
