@@ -1,5 +1,4 @@
 {
-    "architecture": "armhf",
     "description": "VLC Remote Control for Ubuntu",
     "framework": "ubuntu-sdk-13.10",
     "hooks": {
@@ -11,5 +10,5 @@
     "maintainer": "Jonathan D'Orleans <jonathan.dorleans@gmail.com>",
     "name": "com.ubuntu.developer.jdorleans.vlc-control",
     "title": "VLC Control",
-    "version": "1.0.4"
+    "version": "1.0.4.3"
 }

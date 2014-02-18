@@ -21,6 +21,7 @@ MainView {
     property string host: "192.168.0.1" // default ip
     property int port: 8080
     property string baseUrl: ""
+    property string requestUrl: ""
     property string statusUrl: ""
     property var currentState: null
 
@@ -79,17 +80,29 @@ MainView {
             page: Connection { id: connection }
         }
 
+        Tab {
+            title: i18n.tr("About")
+            anchors.fill: parent
+            page: About { id: about }
+        }
+
     }
 
 
     function createBaseUrl() {
-        baseUrl = protocol +"://"+ host +":"+ port +"/requests/";
-        createStatusUrl();
+        baseUrl = protocol +"://"+ host +":"+ port +"/";
+        createRequestUrl();
         return baseUrl;
     }
 
+    function createRequestUrl() {
+        requestUrl = baseUrl +"requests/";
+        createStatusUrl();
+        return requestUrl;
+    }
+
     function createStatusUrl() {
-        statusUrl = baseUrl +"status.json";
+        statusUrl = requestUrl +"status.json";
         updateStatus();
         return statusUrl;
     }

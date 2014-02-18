@@ -7,7 +7,7 @@ Page {
     property alias view: view
     property string dirPath: "/home"
     property string filePath: ""
-    property string browseUrl: main.baseUrl +"browse.json"
+    property string browseUrl: main.requestUrl +"browse.json"
 
     property var audioExts: ['mp3', 'flac', 'ogg', 'wav', 'mpa', 'm4a']
     property var videoExts: ['mkv', 'avi', 'mp4', 'mov', 'vob', 'wmv', 'ogv', 'f4v', 'mpg', 'flv', 'asf', 'm4v', 'swf', 'swt']

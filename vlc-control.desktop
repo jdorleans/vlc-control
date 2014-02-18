@@ -1,8 +1,9 @@
 [Desktop Entry]
-Name=vlc-control
-Comment=My project description
-Exec=/usr/bin/qmlscene $@ /usr/share/vlc-control/vlc-control.qml
-Icon=qmlscene
+Version=1.0
+Name=VLC Control
+Comment=VLC Remote Control for Ubuntu
+Exec=qmlscene /usr/share/vlc-control/vlc-control.qml
+Icon=./img/icon64.png
 Terminal=false
 Type=Application
 X-Ubuntu-Touch=true

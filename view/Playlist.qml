@@ -26,7 +26,7 @@ Page {
     JSONListModel {
         id: model
         query: "$.children[0].children[*]"
-        source: main.baseUrl +"playlist.json"
+        source: main.requestUrl +"playlist.json"
 
         Component.onCompleted: {
             updateTimer.running = true;

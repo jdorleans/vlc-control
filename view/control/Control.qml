@@ -12,6 +12,8 @@ Page {
     property bool updateState: false
     property int currentId: playlist.currentId
     property var currentState: main.currentState
+    property var category
+    property var meta
 
 //    // TODO - TEST ONLY
 //    tools: ToolbarItems {
@@ -48,21 +50,14 @@ Page {
         {
             updateState = true;
             setState(currentState.state);
+            updateCategory();
+            updateMetadata();
+            updateAudioState();
 
-            if (currentState.information && currentState.information.category)
-            {
-                var type = currentState.information.category['Stream 0'].Type;
-
-                if (type && type === "Audio") {
-                    isAudio = true;
-                } else {
-                    isAudio = false;
-                }
-            }
+            info.meta = meta;
+            art.meta = meta;
             volume.updateVolume(currentState.volume);
             timer.updateValue(currentState.time);
-            info.meta = getMetadata();
-            art.meta = getMetadata();
             updateState = false;
             checkState = false;
         }
@@ -214,13 +209,35 @@ Page {
         return (state === stStop);
     }
 
-    function getMetadata()
+    function updateCategory()
     {
-        var meta = null;
+        category = null;
 
-        if (currentState && currentState.information && currentState.information.category) {
-            meta = currentState.information.category.meta;
+        if (currentState.information && currentState.information.category) {
+            category = currentState.information.category;
         }
-        return meta;
+    }
+
+    function updateMetadata()
+    {
+        meta = null;
+
+        if (category) {
+            meta = category.meta;
+        }
+    }
+
+    function updateAudioState()
+    {
+        if (category)
+        {
+            var type = category['Stream 0'].Type;
+
+            if (type && type === "Audio") {
+                isAudio = true;
+            } else {
+                isAudio = false;
+            }
+        }
     }
 }
