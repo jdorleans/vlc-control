@@ -111,7 +111,7 @@ Image {
             }
         } else {
             currentArt = null;
-            source = ""; // TODO Add image for 'CoverArt not Found'
+            source = "../../img/icon.png"; // TODO Add image for 'CoverArt not Found'
         }
     }
 

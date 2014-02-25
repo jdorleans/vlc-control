@@ -5,7 +5,7 @@ import "../libs"
 
 Page {
 
-    // Background
+    // Backgro1und
     Rectangle {
         anchors.fill: parent
         color: "#222"
@@ -133,5 +133,10 @@ Page {
         else {
             return false;
         }
+    }
+
+    function connect(host, port) {
+        tfHost.text = host;
+        tfPort.text = port;
     }
 }

@@ -39,10 +39,14 @@ MainView {
     Component.onCompleted: {
         createBaseUrl();
         updateTimer.running = true;
+        connection.connect(host, port);
     }
 
     onHostChanged: createBaseUrl();
     onPortChanged: createBaseUrl();
+
+    StateSaver.properties: "host, port"
+
 
     Timer {
         id: updateTimer
