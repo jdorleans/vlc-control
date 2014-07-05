@@ -38,14 +38,16 @@ Page {
             view.selectedIndex = -1;
         }
 
-        // VLC BUG - app crashes when accessing some folders such as: /etc or /sbin
+        // Removing system folders access
         function afterUpdate()
         {
-            var re = /^\/.*\/.*\/\.\.$/
+            var re = /^\/home(\/)*$/;
 
-            if (!re.test(dirPath))
-            {
-                re = /^\/.*\/\.\.$/
+            if (re.test(dirPath)) {
+                remove(0);
+            }
+            else {
+                re = /^\/home\/[^\/]+\/\.\.$/;
 
                 if (re.test(dirPath)) {
                     remove(0);
@@ -70,14 +72,14 @@ Page {
             function fixPath()
             {
                 var path = dirPath;
-                var re = /^\/.*\/.*\/\.\.$/
+                var re = /^(\/.+)\/.+\/\.\.$/
 
                 if (re.test(dirPath)) {
-                    dirPath.match("(\/.*)\/.*\/\.\.");
-                    path = RegExp.$1;
+                    var paths = re.exec(dirPath);
+                    path = paths[1];
                 }
                 else {
-                    re = /^\/.*\/\.\.$/
+                    re = /^\/.*\.\.$/
 
                     if (re.test(dirPath)) {
                         path = "/"
@@ -170,10 +172,13 @@ Page {
 
     function resolveIcon(path, type)
     {
-        if (type === "dir") {
-            return resolveFolder(path);
-        } else {
-            return resolveFile(path);
+        if (path !== null)
+        {
+            if (type === "dir") {
+                return resolveFolder(path);
+            } else {
+                return resolveFile(path);
+            }
         }
     }
 
@@ -182,19 +187,18 @@ Page {
     {
         var ext = "svg";
         var folder = "folder";
+        var re = /^.*\/\.\.$/;
 
-        if (path === "/home" || path === "/home/") {
-            folder = "user-home";
+        if (re.test(path)) {
+            folder = "go-up";
         }
         else {
-            path.match("/.*(\.\.)");
+            re = /^\/home\/[^\/]+\/([^\/]+)$/;
 
-            if (RegExp.$1 === "..") {
-                folder = "go-up";
-            }
-            else {
-                path.match("/home/.+/(.+)");
-                var name = RegExp.$1;
+            if (re.test(path))
+            {
+                var paths = re.exec(path);
+                var name = paths[1];
 
                 if (name === "Desktop") {
                     folder = "user-desktop";
@@ -227,6 +231,13 @@ Page {
                 else if (name === "Dropbox") {
                     folder = "dropbox";
                     ext = "png"
+                }
+            }
+            else {
+                re = /^\/home\/[^\/]+$/;
+
+                if (re.test(path)) {
+                    folder = "user-home";
                 }
             }
         }

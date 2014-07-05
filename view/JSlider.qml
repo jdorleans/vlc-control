@@ -22,16 +22,15 @@ Item {
         onClick: backward();
     }
 
-    Label {
-        text: formatValue(value)
-        fontSize: "large"
-        anchors.verticalCenter: mainSlider.verticalCenter
-        anchors.horizontalCenter: mainSlider.horizontalCenter
-    }
+//    Label {
+//        text: formatValue(value)
+//        fontSize: "large"
+//        anchors.verticalCenter: mainSlider.verticalCenter
+//        avnchors.horizontalCenter: mainSlider.horizontalCenter
+//    }
     Slider {
         id: mainSlider
         live: true
-        height: parent.height
         anchors.left: btLeft.right
         anchors.right: btRight.left
         anchors.leftMargin: units.gu(1)

@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 import "view"
 import "view/control"
 
@@ -11,15 +11,17 @@ MainView {
     applicationName: "com.ubuntu.developer.jdorleans.vlc-control"
 
     id: main
-    width: units.gu(55)
-    height: units.gu(90)
+    width: units.gu(47)
+    height: units.gu(77)
     backgroundColor: "#333"
 //    automaticOrientation: true
+    useDeprecatedToolbar: false
 
     property string protocol: "http"
 //    property string host: "localhost"
     property string host: "192.168.0.1" // default ip
     property int port: 8080
+    property string password: ""
     property string baseUrl: ""
     property string requestUrl: ""
     property string statusUrl: ""
@@ -45,8 +47,7 @@ MainView {
     onHostChanged: createBaseUrl();
     onPortChanged: createBaseUrl();
 
-    StateSaver.properties: "host, port"
-
+    StateSaver.properties: "host, port, password"
 
     Timer {
         id: updateTimer
@@ -113,7 +114,7 @@ MainView {
 
     function request(url)
     {
-//        console.log("Main - Request: "+ url);
+        //console.log("Main - Request: "+ url);
         var xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function() {
@@ -121,7 +122,7 @@ MainView {
                 currentState = JSON.parse(xhr.responseText);
             }
         }
-        xhr.open("GET", url);
+        xhr.open("GET", url, true, '', password);
         xhr.send();
     }
 

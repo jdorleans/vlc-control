@@ -16,61 +16,66 @@ Page {
         spacing: units.gu(2)
         anchors.margins: units.gu(2)
 
-        Row {
-            height: tfHost.height
-            width: parent.width
-            spacing: units.gu(1)
-
-            Label {
-                id: lbHost
-                text: i18n.tr("IP Address")
-                fontSize: "large"
-                anchors.verticalCenter: tfHost.verticalCenter
-            }
-
-            TextField {
-                id: tfHost
-                text: main.host
-                height: units.gu(5)
-                font.pixelSize: units.gu(2)
-                color: focus ? "#EE6600" : "white"
-                placeholderText: i18n.tr("default: 192.168.0.1")
-                width: parent.width - lbHost.width - parent.spacing
-//                inputMask: "009.009.009.009"
-                onTextChanged: text = text.trim()
-            }
+        Label {
+            id: lbHost
+            text: i18n.tr("IP Address")
+            fontSize: "large"
         }
 
-        Row {
-            height: tfPort.height
-            width: parent.width
-            spacing: units.gu(1)
+        TextField {
+            id: tfHost
+            text: main.host
+            height: units.gu(5)
+            font.pixelSize: units.gu(2)
+            color: focus ? "#EE6600" : "white"
+            placeholderText: i18n.tr("default: 192.168.0.1")
+//          inputMask: "009.009.009.009"
+            anchors.left: parent.left
+            anchors.right: parent.right
+            onTextChanged: text = text.trim()
+        }
 
-            Label {
-                id: lbPort
-                text: i18n.tr("Port")
-                width: lbHost.width
-                fontSize: "large"
-                anchors.verticalCenter: tfPort.verticalCenter
-            }
+        Label {
+            id: lbPort
+            text: i18n.tr("Port")
+            fontSize: "large"
+        }
 
-            TextField {
-                id: tfPort
-                text: main.port
-                height: units.gu(5)
-                font.pixelSize: units.gu(2)
-                color: focus ? "#EE6600" : "white"
-                placeholderText: i18n.tr("default: 8080")
-                width: parent.width - lbPort.width - parent.spacing
-//                inputMask: "00000"
-                validator: IntValidator { bottom: 0; top: 99999; }
-            }
+        TextField {
+            id: tfPort
+            text: main.port
+            height: units.gu(5)
+            font.pixelSize: units.gu(2)
+            color: focus ? "#EE6600" : "white"
+            placeholderText: i18n.tr("default: 8080")
+//          inputMask: "00000"
+            anchors.left: parent.left
+            anchors.right: parent.right
+            validator: IntValidator { bottom: 0; top: 99999; }
+        }
+
+        Label {
+            id: lbPass
+            text: i18n.tr("Password")
+            fontSize: "large"
+        }
+
+        TextField {
+            id: tfPass
+            text: main.password
+            height: units.gu(5)
+            font.pixelSize: units.gu(2)
+            color: focus ? "#EE6600" : "white"
+            placeholderText: i18n.tr("default: none")
+//          inputMask: "00000"
+            anchors.left: parent.left
+            anchors.right: parent.right
+            onTextChanged: text = text.trim()
         }
 
         Row {
             spacing: tfHost.width - btConfirm.width - btReset.width
             anchors.left: parent.left
-            anchors.leftMargin: lbHost.width + units.gu(1)
 
             Button {
                 id: btConfirm
@@ -84,6 +89,7 @@ Page {
                     if (isPositiveInt(tfPort.text)) {
                         main.port = tfPort.text;
                     }
+                    main.password = tfPass.text;
                 }
             }
 
@@ -95,6 +101,7 @@ Page {
                 onClicked: {
                     main.host = tfHost.text = "192.168.0.1";
                     main.port = tfPort.text = "8080";
+                    main.password = tfPass.text = "";
                 }
             }
         }

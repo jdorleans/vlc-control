@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 import "../"
 
 Page {
@@ -15,19 +15,21 @@ Page {
     property var category
     property var meta
 
-//    // TODO - TEST ONLY
-//    tools: ToolbarItems {
-//        locked: true
-//        opened: true
+//    TODO
+//    tools: ToolbarItems
+//    {
 //        ToolbarButton {
-//            text: i18n.tr("Playlist")
-//            iconSource: "../../img/repeat2.png"
-//            onTriggered: playlist.toogleExpanded()
+//            action: Action {
+//                text: i18n.tr("More")
+//                iconSource: "/usr/share/icons/ubuntu-mobile/actions/scalable/add.svg"
+//            }
 //        }
+
 //        ToolbarButton {
-//            text: i18n.tr("Shuffle")
-//            iconSource: "../../img/shuffle.png"
-//            onTriggered: print("shuffle")
+//            action: Action {
+//                text: i18n.tr("Settings")
+//                iconSource: "/usr/share/icons/ubuntu-mobile/actions/scalable/settings.svg"
+//            }
 //        }
 //    }
 
@@ -97,6 +99,7 @@ Page {
             onExpandedChanged: view.container.isExpanded = expanded;
         }
 
+        // BUG - VLC 2.1.5 does not show cover art
         CoverArtControl {
             id: art
             visible: !isStopped()
@@ -225,7 +228,7 @@ Page {
 
     function updateAudioState()
     {
-        if (category)
+        if (category && category.Type)
         {
             var type = category['Stream 0'].Type;
 

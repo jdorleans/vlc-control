@@ -3,7 +3,7 @@ import "../../view"
 
 Row {
     spacing: units.gu(1);
-    property int size: 64
+    property int size: 48
     property bool isPlaying: false
     property string imgPath: "../../img/";
 

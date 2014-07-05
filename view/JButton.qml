@@ -3,7 +3,7 @@ import QtQuick 2.0
 Image {
     width: size
     height: size
-    property int size: 48
+    property int size: 40
     property alias pressed: actionArea.pressed
     property alias mouseArea: actionArea
     property alias timer: updater
