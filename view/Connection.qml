@@ -1,4 +1,5 @@
 import QtQuick 2.1
+import U1db 1.0 as U1db
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import "../libs"
@@ -90,6 +91,7 @@ Page {
                         main.port = tfPort.text;
                     }
                     main.password = tfPass.text;
+                    saveConnectionData();
                 }
             }
 
@@ -102,10 +104,23 @@ Page {
                     main.host = tfHost.text = "192.168.0.1";
                     main.port = tfPort.text = "8080";
                     main.password = tfPass.text = "";
+                    saveConnectionData();
                 }
             }
         }
 
+    }
+
+    function saveConnectionData()
+    {
+        console.debug("Saving Connection data...");
+
+        dbConnection.contents = {
+            host: main.host,
+            port: main.port,
+            password: main.password
+        }
+        console.debug("Saved data: "+ dbConnection.contents);
     }
 
     function isPositiveInt(n) {
@@ -146,4 +161,5 @@ Page {
         tfHost.text = host;
         tfPort.text = port;
     }
+
 }

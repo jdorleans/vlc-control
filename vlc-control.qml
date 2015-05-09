@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import U1db 1.0 as U1db
 import Ubuntu.Components 1.1
 import "view"
 import "view/control"
@@ -18,7 +19,6 @@ MainView {
     useDeprecatedToolbar: false
 
     property string protocol: "http"
-//    property string host: "localhost"
     property string host: "192.168.0.1" // default ip
     property int port: 8080
     property string password: ""
@@ -39,6 +39,7 @@ MainView {
     property string cmdPlayInput: "in_play&input="
 
     Component.onCompleted: {
+        loadConnectionData();
         createBaseUrl();
         updateTimer.running = true;
         connection.connect(host, port);
@@ -47,7 +48,17 @@ MainView {
     onHostChanged: createBaseUrl();
     onPortChanged: createBaseUrl();
 
-    StateSaver.properties: "host, port, password"
+    U1db.Database {
+        id: db;
+        path: "vlc-control.u1db"
+    }
+
+    U1db.Document {
+        id: dbConnection
+        database: db
+        docId: "connection"
+        create: true
+    }
 
     Timer {
         id: updateTimer
@@ -93,6 +104,21 @@ MainView {
 
     }
 
+    function loadConnectionData()
+    {
+        if (dbConnection.contents)
+        {
+            if (dbConnection.contents.host) {
+                host = dbConnection.contents.host;
+            }
+            if (dbConnection.contents.port) {
+                port = dbConnection.contents.port;
+            }
+            if (dbConnection.contents.password) {
+                password = dbConnection.contents.password;
+            }
+        }
+    }
 
     function createBaseUrl() {
         baseUrl = protocol +"://"+ host +":"+ port +"/";
