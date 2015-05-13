@@ -43,7 +43,7 @@ Page {
         } else {
             timer.updateMaximumValue();
         }
-        timer.updateValue(0);
+        timer.reset();
     }
 
     onCurrentStateChanged:
@@ -160,6 +160,12 @@ Page {
                 main.seek(Math.floor(value));
             }
         }
+
+        function reset() {
+            updateState = true;
+            value = 0;
+            updateState = false;
+        }
     }
 
     // workaround for updating play/pause buttons quicly
@@ -188,7 +194,7 @@ Page {
 
     function stop() {
         checkState = true;
-        timer.updateValue(0);
+        timer.reset();
         setState(stStop);
         main.stop();
     }

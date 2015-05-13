@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+
 import "../libs"
 
 Page {
@@ -77,8 +78,12 @@ Page {
 
         delegate: UDelegate {
             id: delegate
+            removable: true
             text: formatName(index, name)
             subText: formatTime(duration)
+            onItemRemoved: {
+                main.remove(view.model.get(index).id);
+            }
         }
 
         onSelectedIndexChanged:

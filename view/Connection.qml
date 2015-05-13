@@ -113,14 +113,11 @@ Page {
 
     function saveConnectionData()
     {
-        console.debug("Saving Connection data...");
-
         dbConnection.contents = {
             host: main.host,
             port: main.port,
             password: main.password
         }
-        console.debug("Saved data: "+ dbConnection.contents);
     }
 
     function isPositiveInt(n) {

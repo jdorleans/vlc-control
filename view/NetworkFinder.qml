@@ -5,7 +5,7 @@ Timer {
     repeat: true
     running: true
     triggeredOnStart: true
-    property var host: ""
+    property string host: ""
     property int maxEssay: 255
     property var hostArray: [192, 168, 0, 0]
 
