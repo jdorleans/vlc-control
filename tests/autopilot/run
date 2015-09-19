@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [[ -z `which autopilot` ]]; then
-  echo "Autopilot is not installed. Skip"
+if [[ -z `which autopilot3` ]]; then
+  echo "python3-autopilot is not installed. Skip"
   exit
 fi
 
 SCRIPTPATH=`dirname $0`
 pushd ${SCRIPTPATH}
-autopilot run vlc-control
+autopilot3 run vlc-control
 popd

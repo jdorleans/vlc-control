@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-14 23:12-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: vlc-control.qml:87
+msgid "Control"
+msgstr ""
+
+#: vlc-control.qml:93
+msgid "Playlist"
+msgstr ""
+
+#: vlc-control.qml:99
+msgid "Browser"
+msgstr ""
+
+#: vlc-control.qml:105
+msgid "Connection"
+msgstr ""
+
+#: vlc-control.qml:111
+msgid "About"
+msgstr ""
+
+#: view/Connection.qml:22
+msgid "IP Address"
+msgstr ""
+
+#: view/Connection.qml:32
+msgid "default: 192.168.0.1"
+msgstr ""
+
+#: view/Connection.qml:41
+msgid "Port"
+msgstr ""
+
+#: view/Connection.qml:51
+msgid "default: 8080"
+msgstr ""
+
+#: view/Connection.qml:60
+msgid "Password"
+msgstr ""
+
+#: view/Connection.qml:70
+msgid "default: none"
+msgstr ""
+
+#: view/Connection.qml:83
+msgid "Confirm"
+msgstr ""
+
+#: view/Connection.qml:100
+msgid "Reset"
+msgstr ""
+
+#: view/About.qml:33
+msgid "Created by"
+msgstr ""
+
+#: view/About.qml:43
+msgid "Jonathan D'Orleans"
+msgstr ""
+
+#: view/About.qml:49
+msgid "<jonathan.dorleans@gmail.com>"
+msgstr ""

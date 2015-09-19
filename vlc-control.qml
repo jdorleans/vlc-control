@@ -1,22 +1,33 @@
 import QtQuick 2.0
-import U1db 1.0 as U1db
 import Ubuntu.Components 1.1
+import U1db 1.0 as U1db
 import "view"
 import "view/control"
+
+/*!
+    \brief MainView with a Label and Button elements.
+*/
 
 MainView {
     // objectName for functional testing purposes (autopilot-qt5)
     objectName: "mainView"
 
     // Note! applicationName needs to match the "name" field of the click manifest
-    applicationName: "com.ubuntu.developer.jdorleans.vlc-control"
+    applicationName: "vlc-control.jdorleans"
+
+    /*
+     This property enables the application to change orientation
+     when the device is rotated. The default is false.
+    */
+    //automaticOrientation: true
+
+    // Removes the old toolbar and enables new features of the new header.
+    useDeprecatedToolbar: false
 
     id: main
     width: units.gu(47)
     height: units.gu(77)
     backgroundColor: "#333"
-//    automaticOrientation: true
-    useDeprecatedToolbar: false
 
     property string protocol: "http"
     property string host: "192.168.0.1" // default ip
@@ -203,3 +214,4 @@ MainView {
         execute(cmdPlayInput + url);
     }
 }
+

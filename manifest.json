@@ -1,15 +1,15 @@
 {
-    "architecture": "all",
+    "name": "vlc-control.jdorleans",
     "description": "VLC Remote Control for Ubuntu",
-    "framework": "ubuntu-sdk-14.04-qml",
+    "architecture": "all",
+    "title": "VLC Control",
     "hooks": {
         "vlc-control": {
-            "apparmor": "vlc-control.json",
+            "apparmor": "vlc-control.apparmor",
             "desktop": "vlc-control.desktop"
         }
     },
+    "version": "1.2.3",
     "maintainer": "Jonathan D'Orleans <jonathan.dorleans@gmail.com>",
-    "name": "com.ubuntu.developer.jdorleans.vlc-control",
-    "title": "VLC Control",
-    "version": "1.1.2"
+    "framework": "ubuntu-sdk-15.04-qml"
 }
