@@ -10,7 +10,7 @@ import "view/control"
 
 MainView {
     // objectName for functional testing purposes (autopilot-qt5)
-    objectName: "mainView"
+    objectName: "vlc-control.jdorleans"
 
     // Note! applicationName needs to match the "name" field of the click manifest
     applicationName: "vlc-control.jdorleans"
@@ -25,8 +25,8 @@ MainView {
     useDeprecatedToolbar: false
 
     id: main
-    width: units.gu(47)
-    height: units.gu(77)
+    width: units.gu(46)
+    height: units.gu(78)
     backgroundColor: "#333"
 
     property string protocol: "http"

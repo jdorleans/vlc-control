@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-14 23:12-0300\n"
+"POT-Creation-Date: 2015-10-25 08:31-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,66 +17,66 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: vlc-control.qml:87
+#: vlc-control.qml:87 .ubuntu-sdk-deploy/vlc-control.qml:87
 msgid "Control"
 msgstr ""
 
-#: vlc-control.qml:93
+#: vlc-control.qml:93 .ubuntu-sdk-deploy/vlc-control.qml:93
 msgid "Playlist"
 msgstr ""
 
-#: vlc-control.qml:99
+#: vlc-control.qml:99 .ubuntu-sdk-deploy/vlc-control.qml:99
 msgid "Browser"
 msgstr ""
 
-#: vlc-control.qml:105
+#: vlc-control.qml:105 .ubuntu-sdk-deploy/vlc-control.qml:105
 msgid "Connection"
 msgstr ""
 
-#: vlc-control.qml:111
+#: vlc-control.qml:111 .ubuntu-sdk-deploy/vlc-control.qml:111
 msgid "About"
 msgstr ""
 
-#: view/Connection.qml:22
+#: view/Connection.qml:22 .ubuntu-sdk-deploy/view/Connection.qml:22
 msgid "IP Address"
 msgstr ""
 
-#: view/Connection.qml:32
+#: view/Connection.qml:32 .ubuntu-sdk-deploy/view/Connection.qml:32
 msgid "default: 192.168.0.1"
 msgstr ""
 
-#: view/Connection.qml:41
+#: view/Connection.qml:41 .ubuntu-sdk-deploy/view/Connection.qml:41
 msgid "Port"
 msgstr ""
 
-#: view/Connection.qml:51
+#: view/Connection.qml:51 .ubuntu-sdk-deploy/view/Connection.qml:51
 msgid "default: 8080"
 msgstr ""
 
-#: view/Connection.qml:60
+#: view/Connection.qml:60 .ubuntu-sdk-deploy/view/Connection.qml:60
 msgid "Password"
 msgstr ""
 
-#: view/Connection.qml:70
+#: view/Connection.qml:70 .ubuntu-sdk-deploy/view/Connection.qml:70
 msgid "default: none"
 msgstr ""
 
-#: view/Connection.qml:83
+#: view/Connection.qml:83 .ubuntu-sdk-deploy/view/Connection.qml:83
 msgid "Confirm"
 msgstr ""
 
-#: view/Connection.qml:100
+#: view/Connection.qml:100 .ubuntu-sdk-deploy/view/Connection.qml:100
 msgid "Reset"
 msgstr ""
 
-#: view/About.qml:33
+#: view/About.qml:33 .ubuntu-sdk-deploy/view/About.qml:33
 msgid "Created by"
 msgstr ""
 
-#: view/About.qml:43
+#: view/About.qml:43 .ubuntu-sdk-deploy/view/About.qml:43
 msgid "Jonathan D'Orleans"
 msgstr ""
 
-#: view/About.qml:49
+#: view/About.qml:49 .ubuntu-sdk-deploy/view/About.qml:49
 msgid "<jonathan.dorleans@gmail.com>"
 msgstr ""
