@@ -1,7 +1,7 @@
-import QtQuick 2.0
+import QtQuick 2.4
 import U1db 1.0 as U1db
-import Ubuntu.Components 0.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components 1.2
+import Ubuntu.Components.ListItems 1.0 as ListItem
 import "../libs"
 
 Page {

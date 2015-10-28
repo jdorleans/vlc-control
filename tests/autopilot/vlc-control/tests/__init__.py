@@ -23,7 +23,7 @@ class BaseTestCase(AutopilotTestCase):
 
     local_location = os.path.dirname(os.path.dirname(os.getcwd()))
     local_location_qml = os.path.join(local_location, 'vlc-control.qml')
-    click_package = '{0}.{1}'.format('vlc-control', 'jdorleans')
+    click_package = '{0}.{1}'.format('com.ubuntu.developer.jdorleans', 'vlc-control')
 
     def setUp(self):
         super(BaseTestCase, self).setUp()

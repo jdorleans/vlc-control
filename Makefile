@@ -20,7 +20,7 @@
 #################################################################
 
 #APP_ID needs to match the "name" field of the click manifest
-APP_ID=vlc-control.jdorleans
+APP_ID=com.ubuntu.developer.jdorleans.vlc-control
 
 #provides a way for the IDE to set a specific target folder for the translations
 TRANSLATION_ROOT=.

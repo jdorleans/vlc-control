@@ -1,5 +1,5 @@
 {
-    "name": "vlc-control.jdorleans",
+    "name": "com.ubuntu.developer.jdorleans.vlc-control",
     "description": "VLC Remote Control for Ubuntu",
     "architecture": "all",
     "title": "VLC Control",
@@ -9,7 +9,7 @@
             "desktop": "vlc-control.desktop"
         }
     },
-    "version": "1.2.1",
+    "version": "1.2.2",
     "maintainer": "Jonathan D'Orleans <jonathan.dorleans@gmail.com>",
     "framework": "ubuntu-sdk-15.04-qml"
 }
